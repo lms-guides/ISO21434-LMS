@@ -6,6 +6,18 @@
 <title>ISO/SAE 21434 — Automotive Cybersecurity Study Guide</title>
 <meta name="description" content="An interactive study guide for ISO/SAE 21434 automotive cybersecurity engineering: 14 modules, TARA deep dive, quizzes, glossary and interview preparation." />
 <link rel="stylesheet" href="styles.css" />
+<script>
+  /* Apply the stored theme before first paint to avoid a flash. */
+  (function () {
+    try {
+      var t = localStorage.getItem("iso21434.theme.v1");
+      if (t !== "dark" && t !== "light") {
+        t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  })();
+</script>
 </head>
 <body>
 <a class="skip" href="#view">Skip to content</a>
@@ -24,6 +36,9 @@
       <span aria-hidden="true">⌕</span>
       <input id="searchInput" type="search" placeholder="Search lessons, terms, questions…" autocomplete="off" />
     </label>
+    <button class="theme-btn" id="themeBtn" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+      <span class="theme-ico" aria-hidden="true">☾</span>
+    </button>
     <div class="ring" id="ring" title="Course progress">
       <svg viewBox="0 0 36 36" aria-hidden="true">
         <circle class="ring-bg" cx="18" cy="18" r="15.5"></circle>

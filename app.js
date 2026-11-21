@@ -70,6 +70,32 @@
   }
   function go(hash) { location.hash = hash; }
 
+  /* ---------- theme ---------- */
+  var THEME_KEY = "iso21434.theme.v1";
+  var themeBtn = document.getElementById("themeBtn");
+
+  function applyTheme(t) {
+    var dark = t === "dark";
+    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+    if (!themeBtn) return;
+    var label = dark ? "Switch to light mode" : "Switch to dark mode";
+    themeBtn.setAttribute("aria-pressed", dark ? "true" : "false");
+    themeBtn.setAttribute("aria-label", label);
+    themeBtn.title = label;
+    var ico = themeBtn.querySelector(".theme-ico");
+    if (ico) ico.textContent = dark ? "☀" : "☾";
+  }
+
+  applyTheme(document.documentElement.getAttribute("data-theme"));
+
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      applyTheme(next);
+      try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+    });
+  }
+
   /* ---------- progress paint ---------- */
   function paintProgress() {
     var p = pct();
